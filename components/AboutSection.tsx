@@ -8,13 +8,13 @@ export function AboutSection() {
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 mb-6">
-              Chez Bergamo, nous nous engageons à offrir des services complets pour l entretien de vos espaces. 
+              Chez Bergamo, nous nous engageons à offrir des services complets pour l'entretien de vos espaces. 
               Notre mission est de vous fournir des environnements propres, sains et agréables à vivre, 
-              tant à l intérieur qu à l extérieur de votre propriété.
+              tant à l'intérieur qu'à l'extérieur de votre propriété.
             </p>
             <p className="text-lg text-gray-700">
-              Nos valeurs fondamentales sont l excellence, la fiabilité et le respect de l environnement. 
-              Nous mettons un point d honneur à utiliser des produits écologiques et des techniques respectueuses 
+              Nos valeurs fondamentales sont l'excellence, la fiabilité et le respect de l'environnement. 
+              Nous mettons un point d'honneur à utiliser des produits écologiques et des techniques respectueuses 
               de votre santé et de celle de vos proches. Notre équipe de professionnels expérimentés garantit 
               un service de qualité supérieure, adapté à vos besoins spécifiques.
             </p>

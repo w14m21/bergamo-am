@@ -12,7 +12,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              {/* <img src={bergamoLogo} alt="Bergamo" className="h-10 w-auto" /> */}
+              <img src="/logo no bg.png" alt="Bergamo" className="h-10 w-auto" />
               <span className="text-xl font-bold">Bergamo</span>
             </div>
             <p className="text-gray-300">
@@ -80,22 +80,22 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-green-400" />
-                <span className="text-gray-300">0641196719</span>
+                <span className="text-gray-300"> +212 666 640 551 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-green-400" />
-                <span className="text-gray-300">service-client@bergamo.ma</span>
+                <span className="text-gray-300"> bergamo.serviceclient@gmail.com </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-green-400" />
-                <span className="text-gray-300">Sala Al Jadida, Rabat-Salé-Kénitra, Maroc</span>
+                <span className="text-gray-300"> Sala Al Jadida, Rabat-Salé-Kénitra, Maroc </span>
               </div>
             </div>
             <Button 
               className="w-full bg-green-600 hover:bg-green-700 mt-4"
               onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Obtenir un devis
+              Obtenir un rendez-vous
             </Button>
           </div>
         </div>
@@ -104,14 +104,14 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Bergamo Services. Tous droits réservés.
+            © 2025 Bergamo AM. Tous droits réservés.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
               Politique de confidentialité
             </a>
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Conditions d utilisation
+              Conditions d'utilisation
             </a>
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
               Politique des cookies

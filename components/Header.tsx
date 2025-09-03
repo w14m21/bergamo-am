@@ -8,7 +8,7 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            {/* <img src={bergamoLogo} alt="Bergamo" className="h-12 w-auto" /> */}
+            <img src="/long logo no bg.png" alt="Bergamo" className="h-12 w-auto" />
           </div>
 
           {/* Navigation */}

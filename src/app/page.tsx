@@ -21,9 +21,9 @@ export default function Home() {
         <ServicesSection />
         <BookingSection />
         <TestimonialsSection />
-        <AddTestimonialSection />
+        {/* <AddTestimonialSection /> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
       <Toaster position="top-right" richColors />
     </div>
   );

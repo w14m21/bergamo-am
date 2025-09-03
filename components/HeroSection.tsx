@@ -5,20 +5,20 @@ export function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50">
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-green-600/10 to-yellow-400/10"></div>
+      <div className="absolute inset-0 bg-[url('/BG.png')] bg-cover bg-center"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="space-y-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-            Bergamo – Le soin complet
-            <br />
-            <span className="text-blue-600">de vos espaces</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-            Intérieurs et extérieurs, propres, sains et agréables à vivre.
-          </p>
-          
+        <h1>
+          <span className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+           Bergamo AM
+          </span>
+        <br />
+         <span className="text-green-900 font-bold block mt-6 text-3xl md:text-6xl lg:text-7xl">
+           Votre espace - Notre expertise
+         </span>
+        </h1>
+
           <div className="pt-8">
             <Button 
               size="lg" 
