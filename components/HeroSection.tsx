@@ -14,9 +14,9 @@ export function HeroSection() {
            Bergamo AM
           </span>
         <br />
-         <span className="text-green-900 font-bold block mt-6 text-3xl md:text-6xl lg:text-7xl">
+         <span className="font-bold block mt-6 text-3xl md:text-6xl lg:text-7xl" style={{ color: "#f5d455" }}>
            Votre espace - Notre expertise
-         </span>
+        </span>
         </h1>
 
           <div className="pt-8">
