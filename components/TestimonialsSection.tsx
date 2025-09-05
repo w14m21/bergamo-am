@@ -1,5 +1,4 @@
 import { Card, CardContent } from "./ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import { Star } from "lucide-react";
 
@@ -58,7 +57,7 @@ export function TestimonialsSection() {
 					</h2>
 					<p className="text-lg text-gray-700 max-w-3xl mx-auto">
 						Découvrez les témoignages de nos clients satisfaits qui nous font
-						confiance pour l entretien de leurs espaces.
+						confiance pour l&apos;entretien de leurs espaces.
 					</p>
 				</div>
 

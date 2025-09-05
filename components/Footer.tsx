@@ -111,7 +111,7 @@ export function Footer() {
               Politique de confidentialité
             </a>
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Conditions d'utilisation
+              Conditions d&apos;utilisation
             </a>
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
               Politique des cookies
