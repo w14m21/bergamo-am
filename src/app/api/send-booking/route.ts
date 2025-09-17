@@ -18,14 +18,39 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
+// --- Booking data type ---
+interface BookingData {
+  name: string;
+  email: string;
+  phone?: string;
+  services: string[];
+  additionalNotes?: string;
+  preferredDate?: string; // ISO date string
+  cleaningTypes?: string[];
+  propertySize?: string;
+  rooms?: string;
+  livingRooms?: string;
+  toilets?: string;
+  vehicleSizes?: string[];
+  carWashTypes?: string[];
+  degreasingItems?: string[];
+  quantities?: Record<string, number>;
+  poolSize?: string;
+  handymanServices?: string[];
+  pestTypes?: string[];
+  pestArea?: string;
+  gardenArea?: string;
+  photos?: string[];
+}
+
 // --- Env validation ---
 function getTransporter() {
   const { SMTP_USER, SMTP_PASS, BUSINESS_EMAIL } = process.env;
-
   if (!SMTP_USER || !SMTP_PASS || !BUSINESS_EMAIL) {
-    throw new Error("❌ Missing SMTP_USER, SMTP_PASS, or BUSINESS_EMAIL in environment variables.");
+    throw new Error(
+      "❌ Missing SMTP_USER, SMTP_PASS, or BUSINESS_EMAIL in environment variables."
+    );
   }
-
   return nodemailer.createTransport({
     service: "gmail",
     auth: { user: SMTP_USER, pass: SMTP_PASS },
@@ -33,10 +58,15 @@ function getTransporter() {
 }
 
 // --- Validate booking data ---
-function validateBookingData(data: any) {
+function validateBookingData(data: unknown): string | null {
   if (!data || typeof data !== "object") return "Invalid request body";
-  if (!data.name || typeof data.name !== "string") return "Missing or invalid name";
-  if (!data.email || typeof data.email !== "string") return "Missing or invalid email";
+  const booking = data as BookingData;
+  if (!booking.name || typeof booking.name !== "string")
+    return "Missing or invalid name";
+  if (!booking.email || typeof booking.email !== "string")
+    return "Missing or invalid email";
+  if (!Array.isArray(booking.services) || booking.services.length === 0)
+    return "Missing or invalid services";
   return null;
 }
 
@@ -57,9 +87,18 @@ export async function POST(req: Request) {
       );
     }
 
-    const data = await req.json();
+    // --- Parse JSON safely ---
+    let data: BookingData;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: "Invalid JSON body" },
+        { status: 400 }
+      );
+    }
 
-    // --- Validate request body ---
+    // --- Validate data ---
     const validationError = validateBookingData(data);
     if (validationError) {
       return NextResponse.json({ success: false, error: validationError }, { status: 400 });
@@ -78,7 +117,7 @@ export async function POST(req: Request) {
         <p><strong>Nom:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Téléphone:</strong> ${data.phone || "Non fourni"}</p>
-        <p><strong>Services:</strong> ${Array.isArray(data.services) ? data.services.join(", ") : "Non précisé"}</p>
+        <p><strong>Services:</strong> ${data.services.join(", ")}</p>
       `,
     });
 
@@ -94,7 +133,7 @@ export async function POST(req: Request) {
         <ul>
           <li><strong>Email:</strong> ${data.email}</li>
           <li><strong>Téléphone:</strong> ${data.phone || "Non fourni"}</li>
-          <li><strong>Services:</strong> ${Array.isArray(data.services) ? data.services.join(", ") : "Non précisé"}</li>
+          <li><strong>Services:</strong> ${data.services.join(", ")}</li>
         </ul>
         <p>Cordialement,<br>L’équipe</p>
       `,

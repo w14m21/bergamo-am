@@ -1,6 +1,5 @@
-
 import { Toaster } from "../../components/ui/sonner";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/Header"; // <-- FIXED
 import { HeroSection } from "../../components/HeroSection";
 import { AboutSection } from "../../components/AboutSection";
 import { ValuesSection } from "../../components/ValuesSection";
@@ -10,10 +9,10 @@ import { TestimonialsSection } from "../../components/TestimonialsSection";
 import { AddTestimonialSection } from "../../components/AddTestimonialSection";
 import { Footer } from "../../components/Footer";
 
-export default function Home() {
+export default async function Home() {
   return (  
     <div className="min-h-screen">
-      <Header />
+      <Header /> {/* <-- FIXED */}
       <main>
         <HeroSection />
         <AboutSection />

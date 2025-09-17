@@ -196,11 +196,26 @@ export function BookingSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Demande de réservation envoyée avec succès ! Nous vous contacterons bientôt.");
-    console.log('Form submitted:', formData);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/send-booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      toast.success("✅ Votre réservation a été envoyée. Vous recevrez une confirmation par email !");
+      setFormData({ ...formData, name: "", email: "", phone: "", services: [] }); // reset minimal
+    } else {
+      toast.error("❌ Erreur lors de l’envoi du formulaire. Réessayez plus tard.");
+    }
+  } catch (error) {
+    toast.error("⚠️ Impossible d’envoyer. Vérifiez votre connexion.");
+  }
+};
 
   const isServiceSelected = (service: string) => formData.services.includes(service);
 
