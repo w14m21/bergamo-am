@@ -1,0 +1,19 @@
+{
+      "Header": {
+        "home": "Accueil",
+        "about": "À propos",
+        "values": "Valeurs",
+        "testimonials": "Témoignages",
+        "addTestimonial": "Ajouter un témoignage"
+    },
+    "HeroSection": {
+        "title": "Bergamo AM",
+        "subtitle": "Votre espace - Notre expertise",
+        "getService": "Réservez nos services"
+    },
+    "AboutSection": {
+        "title": "À propos de nous",
+        "description": "Bergamo AM est une société de gestion d'actifs de premier plan avec plus de 20 ans d'expérience dans l'industrie financière. Nous offrons une gamme complète de services, y compris la gestion de portefeuille, la planification financière et le conseil en investissement.",
+        "learnMore": "En savoir plus"
+    }
+}

@@ -1,0 +1,19 @@
+{
+      "Header": {
+        "home": "Home",
+        "about": "About",
+        "values": "Values",
+        "testimonials": "Testimonials",
+        "addTestimonial": "Add a testimonial"
+    },
+    "HeroSection": {
+        "title": "Bergamo AM",
+        "subtitle": "Your space - Our expertise",
+        "getService": "Book our services"
+    },
+    "AboutSection": {
+        "title": "About us",
+        "description": "Bergamo AM is a leading asset management company with over 20 years of experience in the financial industry. We offer a full range of services, including portfolio management, financial planning, and investment advice.",
+        "learnMore": "Learn more"
+    }
+}
