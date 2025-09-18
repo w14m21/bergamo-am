@@ -13,7 +13,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <Image src="/logo no bg.png" alt="Bergamo" className="h-10 w-auto" />
+              <img src="/logo no bg.png" alt="Bergamo" className="h-10 w-auto" />
               <span className="text-xl font-bold">Bergamo</span>
             </div>
             <p className="text-gray-300">
