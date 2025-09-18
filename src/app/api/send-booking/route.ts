@@ -3,17 +3,24 @@ import nodemailer from "nodemailer";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
-// --- Redis client (for rate limiting) ---
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+// --- Redis client (safe for dev) ---
+let redis: Redis | null = null;
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+} else {
+  console.warn("⚠️ Upstash Redis not configured. Rate limiting disabled in dev.");
+}
 
-// Limit: 3 requests / 10 minutes / IP
-const ratelimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(3, "600 s"),
-});
+// --- Rate limiter (safe fallback) ---
+const ratelimit = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(3, "600 s"),
+    })
+  : null;
 
 function getTransporter() {
   return nodemailer.createTransport({
@@ -30,13 +37,17 @@ function getTransporter() {
 export async function POST(req: Request) {
   try {
     // --- Rate limiting check ---
-    const ip = req.headers.get("x-forwarded-for") ?? "anonymous";
-    const { success } = await ratelimit.limit(ip);
-    if (!success) {
-      return NextResponse.json(
-        { error: "Trop de tentatives. Réessayez plus tard." },
-        { status: 429 }
-      );
+    if (ratelimit) {
+      const ip = req.headers.get("x-forwarded-for") ?? "anonymous";
+      const { success } = await ratelimit.limit(ip);
+      if (!success) {
+        return NextResponse.json(
+          { error: "Trop de tentatives. Réessayez plus tard." },
+          { status: 429 }
+        );
+      }
+    } else {
+      console.log("⚠️ Rate limiting skipped (dev mode).");
     }
 
     // --- Parse formData from frontend ---
@@ -60,7 +71,7 @@ export async function POST(req: Request) {
 
     const transporter = getTransporter();
 
-    // --- Email to the company (all details + photos) ---
+    // --- Email to the company ---
     await transporter.sendMail({
       from: `"Site Web - Réservation" <${process.env.SMTP_USER}>`,
       to: process.env.BUSINESS_EMAIL,

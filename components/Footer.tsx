@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
@@ -12,7 +13,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src="/logo no bg.png" alt="Bergamo" className="h-10 w-auto" />
+              <Image src="/logo no bg.png" alt="Bergamo" className="h-10 w-auto" />
               <span className="text-xl font-bold">Bergamo</span>
             </div>
             <p className="text-gray-300">
